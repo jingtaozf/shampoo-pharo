@@ -71,7 +71,7 @@ ClientConnection >> on: aSocket onDisconnect: aBlock parent: aServer [
 ClientConnection >> process: anXMLRequest [
 	| r xml |
 	[xml := ShampooXMLNode from: anXMLRequest
-	] onErrorDo:: [^nil].
+	] onErrorDo: [^nil].
 	r := Request from: xml.
 	[self send: (self state process: r)]
 		on: FatalError do: [:e | self drop]
