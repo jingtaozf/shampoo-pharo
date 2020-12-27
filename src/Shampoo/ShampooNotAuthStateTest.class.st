@@ -35,7 +35,7 @@ ShampooNotAuthStateTest >> testCheckLoginSucc [
             connMock 
                 on: #authenticates:with:
                 do: [:creds :magic | true].
-            [resp := state process: rq] ifError: [self fail].
+            [resp := state process: rq] onErrorDo: [self fail].
             connMock forgetAbout: #authenticates:with:.
 
             self

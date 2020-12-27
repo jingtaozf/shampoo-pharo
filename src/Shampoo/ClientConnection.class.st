@@ -23,7 +23,7 @@ ClientConnection class >> on: aSocket onDisconnect: aBlock parent: aServer [
 
 { #category : #networking }
 ClientConnection >> close [
-	[sock close] ifError: []
+	[sock close] onErrorDo: []
 ]
 
 { #category : #networking }

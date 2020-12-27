@@ -26,7 +26,7 @@ CompileMethodRequest >> execute [
             class := (Smalltalk at: className asSymbol).
             (side = #class) ifTrue: [class := class class].
 
-            [class compile: source] ifError: [^OperationalResponse failure: id].
+            [class compile: source] onErrorDo: [^OperationalResponse failure: id].
             ^OperationalResponse success: id
 
 ]

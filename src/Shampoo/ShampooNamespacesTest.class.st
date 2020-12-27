@@ -29,7 +29,7 @@ ShampooNamespacesTest >> testIndirectSubspaces [
              be included in the response"
             | indirect |
             indirect := [Namespace allInstances detect: [:each | each environment ~= Smalltalk]]
-                        ifError: [nil].
+                        onErrorDo: [nil].
             indirect ifNotNil: [self shouldnt: [items includes: indirect name]]
 
 ]

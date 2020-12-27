@@ -85,7 +85,7 @@ ShampooServer >> clients [
 
 { #category : #private }
 ShampooServer >> close [
-	[server close] ifError: [].
+	[server close] onErrorDo: [].
 	clientsMutex critical:
 	[self clients copy do: [:cl | cl close]].
 	"And that's all. Every client connection
