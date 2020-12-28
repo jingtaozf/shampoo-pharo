@@ -32,7 +32,7 @@ CompileClassRequest >> execute [
 
             side = #instance
                 ifTrue: ["Looks a bit kludgy, but currently I dont know how to make it better. TODO: refactor"
-                         parent := (Smalltalk at: superSpace asSymbol) at: superName asSymbol.
+                         parent := Smalltalk at:  superName asSymbol.
 
                          [class := parent
                             subclass: className asSymbol
@@ -41,7 +41,7 @@ CompileClassRequest >> execute [
                             poolDictionaries: '' " poolvars elementsString "
                             category: spaceName.
                          ] on: Error do: [:e | Transcript show: e printString; cr. failed := true];
-				   on: ProgressInitiationException do: [:e | e resume]]
+				   on: SelectorException  do: [:e | e resume]]
                 ifFalse: [class := Smalltalk at: className asSymbol ifAbsent: [nil].
 				"On Pharo, there were a strange exception when using the safe form."
 				class class instanceVariableNames: instvars elementsString.
